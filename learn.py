@@ -8,9 +8,11 @@ import re
 
 filename = os.path.expanduser('~') + '/.word-list'
 
+def countLines(name):
+	return sum(1 for line in open(name))
+
 def getTarget():
-	lines = sum(1 for line in open(filename))
-	return random.randint(0, lines - 1)
+	return random.randint(0, countLines(filename) - 1)
 
 def quiz():
 	target = getTarget()
@@ -38,17 +40,24 @@ def test():
 	
 	random.shuffle(phrases)
 	
+	count = 0
 	for phrase in phrases:
 		print('>', phrase[1], end='')
 		
+		firstTry = True
 		for answer in sys.stdin:
 			answer = answer[:-1]
 			if phrase[0] == answer:
 				print('Right!\n')
+				
+				if firstTry:
+					count += 1
 				break
 			else:
 				print('\'', answer, '\' → \'' + phrase[0] + '\'', sep='')
+				firstTry = False
 	
+	print(count, '/', countLines(filename), " (", int(count / countLines(filename) * 1000) / 10, "%)", sep='')
 
 if len(sys.argv) == 2:
 	if sys.argv[1] == 'quiz':
