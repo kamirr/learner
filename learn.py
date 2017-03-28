@@ -44,7 +44,7 @@ def test():
 		for answer in sys.stdin:
 			answer = answer[:-1]
 			if phrase[0] == answer:
-				print('Right!')
+				print('Right!\n')
 				break
 			else:
 				print('\'', answer, '\' → \'' + phrase[0] + '\'', sep='')
