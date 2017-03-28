@@ -4,6 +4,7 @@ import fileinput
 import random
 import sys
 import os
+import re
 
 filename = os.path.expanduser('~') + '/.word-list'
 
@@ -58,6 +59,11 @@ if len(sys.argv) == 2:
 		quit()
 
 	with open(filename, 'a') as myfile:
+		pattern = re.compile('\w* = \w*\Z')
+		if pattern.match(sys.argv[1]) == None:
+			print('Please, follow \'word = meaning\' rule')
+			quit()
+	
 		myfile.write(sys.argv[1] + '\n')
 		quit()
 
