@@ -68,7 +68,7 @@ if len(sys.argv) == 2:
 		quit()
 
 	with open(filename, 'a') as myfile:
-		pattern = re.compile('[a-zA-Z0-9_ ]* = [a-zA-Z0-9_ ]*\Z')
+		pattern = re.compile('.* = .*\Z')
 		if pattern.match(sys.argv[1]) == None:
 			print('Please, follow \'word = meaning\' rule')
 			quit()
