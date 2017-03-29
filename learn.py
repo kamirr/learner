@@ -28,7 +28,7 @@ def quiz():
 	for line in sys.stdin:
 		line = line[:-1]
 		if words[0] == line:
-			print('Right!')
+			print('Right!\n')
 			break
 		else:
 			print('\'', line, '\' → \'' + words[0] + '\'', sep='')
